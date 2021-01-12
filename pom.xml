@@ -28,7 +28,7 @@
   <groupId>ml.littlebulb.presto.kudu</groupId>
   <artifactId>prestosql-kudu</artifactId>
   <!--<name>Kudu Connector for PrestoSql</name>-->
-  <version>0.206.1</version>
+  <version>322</version>
 
   <!--<packaging>presto-plugin</packaging>-->
 
@@ -147,22 +147,6 @@
       <artifactId>presto-tests</artifactId>
       <version>${presto.version}</version>
       <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.40</version>
-    </dependency>
-    <dependency>
-      <groupId>com.mchange</groupId>
-      <artifactId>c3p0</artifactId>
-      <version>0.9.5.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis</artifactId>
-      <version>3.4.0</version>
     </dependency>
 
   </dependencies>

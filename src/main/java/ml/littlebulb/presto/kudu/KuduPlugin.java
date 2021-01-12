@@ -24,6 +24,6 @@ import com.google.common.collect.ImmutableList;
 public class KuduPlugin implements Plugin {
 
   @Override public Iterable<ConnectorFactory> getConnectorFactories() {
-    return ImmutableList.of(new KuduConnectorFactory("kudu"));
+    return ImmutableList.of(new KuduConnectorFactory("xkudu"));
   }
 }

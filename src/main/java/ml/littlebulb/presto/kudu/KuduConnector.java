@@ -88,10 +88,10 @@ public class KuduConnector implements Connector {
         return splitManager;
     }
 
-    @Override
-    public ConnectorRecordSetProvider getRecordSetProvider() {
-        return recordSetProvider;
-    }
+//    @Override
+//    public ConnectorRecordSetProvider getRecordSetProvider() {
+//        return recordSetProvider;
+//    }
 
     @Override
     public ConnectorPageSourceProvider getPageSourceProvider() {

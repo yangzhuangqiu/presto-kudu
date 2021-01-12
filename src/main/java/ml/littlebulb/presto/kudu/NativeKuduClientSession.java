@@ -1,22 +1,22 @@
 package ml.littlebulb.presto.kudu;
 
-import com.facebook.presto.spi.ColumnHandle;
-import com.facebook.presto.spi.ColumnMetadata;
-import com.facebook.presto.spi.ConnectorTableMetadata;
-import com.facebook.presto.spi.PrestoException;
-import com.facebook.presto.spi.SchemaNotFoundException;
-import com.facebook.presto.spi.SchemaTableName;
-import com.facebook.presto.spi.TableNotFoundException;
-import com.facebook.presto.spi.predicate.DiscreteValues;
-import com.facebook.presto.spi.predicate.Domain;
-import com.facebook.presto.spi.predicate.EquatableValueSet;
-import com.facebook.presto.spi.predicate.Marker;
-import com.facebook.presto.spi.predicate.Range;
-import com.facebook.presto.spi.predicate.Ranges;
-import com.facebook.presto.spi.predicate.SortedRangeSet;
-import com.facebook.presto.spi.predicate.TupleDomain;
-import com.facebook.presto.spi.predicate.ValueSet;
-import com.facebook.presto.spi.type.DecimalType;
+import io.prestosql.spi.connector.ColumnHandle;
+import io.prestosql.spi.connector.ColumnMetadata;
+import io.prestosql.spi.connector.ConnectorTableMetadata;
+import io.prestosql.spi.PrestoException;
+import io.prestosql.spi.connector.SchemaNotFoundException;
+import io.prestosql.spi.connector.SchemaTableName;
+import io.prestosql.spi.connector.TableNotFoundException;
+import io.prestosql.spi.predicate.DiscreteValues;
+import io.prestosql.spi.predicate.Domain;
+import io.prestosql.spi.predicate.EquatableValueSet;
+import io.prestosql.spi.predicate.Marker;
+import io.prestosql.spi.predicate.Range;
+import io.prestosql.spi.predicate.Ranges;
+import io.prestosql.spi.predicate.SortedRangeSet;
+import io.prestosql.spi.predicate.TupleDomain;
+import io.prestosql.spi.predicate.ValueSet;
+import io.prestosql.spi.type.DecimalType;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.airlift.log.Logger;
@@ -58,9 +58,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static com.facebook.presto.spi.StandardErrorCode.GENERIC_INTERNAL_ERROR;
-import static com.facebook.presto.spi.StandardErrorCode.GENERIC_USER_ERROR;
-import static com.facebook.presto.spi.StandardErrorCode.QUERY_REJECTED;
+import static io.prestosql.spi.StandardErrorCode.GENERIC_INTERNAL_ERROR;
+import static io.prestosql.spi.StandardErrorCode.GENERIC_USER_ERROR;
+import static io.prestosql.spi.StandardErrorCode.QUERY_REJECTED;
 import static com.google.common.collect.ImmutableList.toImmutableList;
 
 
@@ -634,7 +634,7 @@ public class NativeKuduClientSession implements KuduClientSession {
     }
 
     private KuduPredicate createInListPredicate(ColumnSchema columnSchema, DiscreteValues discreteValues) {
-        com.facebook.presto.spi.type.Type type = TypeHelper.fromKuduColumn(columnSchema);
+        io.prestosql.spi.type.Type type = TypeHelper.fromKuduColumn(columnSchema);
         List<Object> javaValues = discreteValues.getValues().stream().map(value -> TypeHelper.getJavaValue(type, value)).collect(toImmutableList());
         return KuduPredicate.newInListPredicate(columnSchema, javaValues);
     }
@@ -646,7 +646,7 @@ public class NativeKuduClientSession implements KuduClientSession {
     private KuduPredicate createComparisonPredicate(ColumnSchema columnSchema,
                                                     KuduPredicate.ComparisonOp op,
                                                     Object value) {
-        com.facebook.presto.spi.type.Type type = TypeHelper.fromKuduColumn(columnSchema);
+        io.prestosql.spi.type.Type type = TypeHelper.fromKuduColumn(columnSchema);
         Object javaValue = TypeHelper.getJavaValue(type, value);
         if (javaValue instanceof Long) {
             return KuduPredicate.newComparisonPredicate(columnSchema, op, (Long) javaValue);

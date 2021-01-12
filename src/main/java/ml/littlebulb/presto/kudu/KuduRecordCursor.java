@@ -17,8 +17,8 @@
 
 package ml.littlebulb.presto.kudu;
 
-import com.facebook.presto.spi.RecordCursor;
-import com.facebook.presto.spi.type.Type;
+import io.prestosql.spi.connector.RecordCursor;
+import io.prestosql.spi.type.Type;
 import io.airlift.log.Logger;
 import io.airlift.slice.Slice;
 import org.apache.kudu.client.KuduException;

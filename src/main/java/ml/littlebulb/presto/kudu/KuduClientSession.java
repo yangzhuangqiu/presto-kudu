@@ -1,8 +1,8 @@
 package ml.littlebulb.presto.kudu;
 
-import com.facebook.presto.spi.ColumnMetadata;
-import com.facebook.presto.spi.ConnectorTableMetadata;
-import com.facebook.presto.spi.SchemaTableName;
+import io.prestosql.spi.connector.ColumnMetadata;
+import io.prestosql.spi.connector.ConnectorTableMetadata;
+import io.prestosql.spi.connector.SchemaTableName;
 import ml.littlebulb.presto.kudu.properties.RangePartition;
 import org.apache.kudu.Schema;
 import org.apache.kudu.client.KuduScanner;

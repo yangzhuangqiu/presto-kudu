@@ -1,10 +1,10 @@
 package ml.littlebulb.presto.kudu;
 
-import com.facebook.presto.spi.type.VarcharType;
-import com.facebook.presto.testing.MaterializedResult;
-import com.facebook.presto.testing.MaterializedRow;
-import com.facebook.presto.testing.QueryRunner;
-import com.facebook.presto.tests.AbstractTestIntegrationSmokeTest;
+import io.prestosql.spi.type.VarcharType;
+import io.prestosql.testing.MaterializedResult;
+import io.prestosql.testing.MaterializedRow;
+import io.prestosql.testing.QueryRunner;
+import io.prestosql.tests.AbstractTestIntegrationSmokeTest;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

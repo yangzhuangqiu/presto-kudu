@@ -17,12 +17,12 @@
 
 package ml.littlebulb.presto.kudu;
 
-import com.facebook.presto.spi.connector.ConnectorPageSinkProvider;
-import com.facebook.presto.spi.connector.ConnectorPageSourceProvider;
-import com.facebook.presto.spi.connector.ConnectorRecordSetProvider;
-import com.facebook.presto.spi.connector.ConnectorSplitManager;
-import com.facebook.presto.spi.procedure.Procedure;
-import com.facebook.presto.spi.type.TypeManager;
+import io.prestosql.spi.connector.ConnectorPageSinkProvider;
+import io.prestosql.spi.connector.ConnectorPageSourceProvider;
+import io.prestosql.spi.connector.ConnectorRecordSetProvider;
+import io.prestosql.spi.connector.ConnectorSplitManager;
+import io.prestosql.spi.procedure.Procedure;
+import io.prestosql.spi.type.TypeManager;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;

@@ -1,8 +1,8 @@
 package ml.littlebulb.presto.kudu.procedures;
 
-import com.facebook.presto.spi.SchemaTableName;
-import com.facebook.presto.spi.procedure.Procedure;
-import com.facebook.presto.spi.procedure.Procedure.Argument;
+import io.prestosql.spi.connector.SchemaTableName;
+import io.prestosql.spi.procedure.Procedure;
+import io.prestosql.spi.procedure.Procedure.Argument;
 import com.google.common.collect.ImmutableList;
 import ml.littlebulb.presto.kudu.KuduClientSession;
 import ml.littlebulb.presto.kudu.properties.KuduTableProperties;
@@ -12,8 +12,8 @@ import java.lang.invoke.MethodHandle;
 
 import javax.inject.Inject;
 
-import static com.facebook.presto.spi.block.MethodHandleUtil.methodHandle;
-import static com.facebook.presto.spi.type.StandardTypes.VARCHAR;
+import static io.prestosql.spi.block.MethodHandleUtil.methodHandle;
+import static io.prestosql.spi.type.VarcharType.VARCHAR;
 import static java.util.Objects.requireNonNull;
 
 public class RangePartitionProcedures {

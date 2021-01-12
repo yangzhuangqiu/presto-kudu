@@ -13,8 +13,8 @@
  */
 package ml.littlebulb.presto.kudu;
 
-import com.facebook.presto.spi.SchemaTableName;
-import com.facebook.presto.spi.type.Type;
+import io.prestosql.spi.connector.SchemaTableName;
+import io.prestosql.spi.type.Type;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableList;
 import org.apache.kudu.client.KuduTable;

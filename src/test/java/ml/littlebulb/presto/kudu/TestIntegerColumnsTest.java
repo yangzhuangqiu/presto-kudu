@@ -1,8 +1,8 @@
 package ml.littlebulb.presto.kudu;
 
-import com.facebook.presto.testing.MaterializedResult;
-import com.facebook.presto.testing.QueryRunner;
-import com.facebook.presto.tests.AbstractTestQueryFramework;
+import io.prestosql.testing.MaterializedResult;
+import io.prestosql.testing.QueryRunner;
+import io.prestosql.tests.AbstractTestQueryFramework;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

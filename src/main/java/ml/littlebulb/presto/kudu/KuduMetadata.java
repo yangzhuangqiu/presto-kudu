@@ -17,26 +17,26 @@
 
 package ml.littlebulb.presto.kudu;
 
-import com.facebook.presto.spi.ColumnHandle;
-import com.facebook.presto.spi.ColumnMetadata;
-import com.facebook.presto.spi.ConnectorInsertTableHandle;
-import com.facebook.presto.spi.ConnectorNewTableLayout;
-import com.facebook.presto.spi.ConnectorOutputTableHandle;
-import com.facebook.presto.spi.ConnectorSession;
-import com.facebook.presto.spi.ConnectorTableHandle;
-import com.facebook.presto.spi.ConnectorTableLayout;
-import com.facebook.presto.spi.ConnectorTableLayoutHandle;
-import com.facebook.presto.spi.ConnectorTableLayoutResult;
-import com.facebook.presto.spi.ConnectorTableMetadata;
-import com.facebook.presto.spi.Constraint;
-import com.facebook.presto.spi.SchemaTableName;
-import com.facebook.presto.spi.SchemaTablePrefix;
-import com.facebook.presto.spi.connector.ConnectorMetadata;
-import com.facebook.presto.spi.connector.ConnectorOutputMetadata;
-import com.facebook.presto.spi.statistics.ComputedStatistics;
-import com.facebook.presto.spi.type.Type;
-import com.facebook.presto.spi.type.VarbinaryType;
-import com.facebook.presto.spi.type.VarcharType;
+import io.prestosql.spi.connector.ColumnHandle;
+import io.prestosql.spi.connector.ColumnMetadata;
+import io.prestosql.spi.connector.ConnectorInsertTableHandle;
+import io.prestosql.spi.connector.ConnectorNewTableLayout;
+import io.prestosql.spi.connector.ConnectorOutputTableHandle;
+import io.prestosql.spi.connector.ConnectorSession;
+import io.prestosql.spi.connector.ConnectorTableHandle;
+import io.prestosql.spi.connector.ConnectorTableLayout;
+import io.prestosql.spi.connector.ConnectorTableLayoutHandle;
+import io.prestosql.spi.connector.ConnectorTableLayoutResult;
+import io.prestosql.spi.connector.ConnectorTableMetadata;
+import io.prestosql.spi.connector.Constraint;
+import io.prestosql.spi.connector.SchemaTableName;
+import io.prestosql.spi.connector.SchemaTablePrefix;
+import io.prestosql.spi.connector.ConnectorMetadata;
+import io.prestosql.spi.connector.ConnectorOutputMetadata;
+import io.prestosql.spi.statistics.ComputedStatistics;
+import io.prestosql.spi.type.Type;
+import io.prestosql.spi.type.VarbinaryType;
+import io.prestosql.spi.type.VarcharType;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.airlift.slice.Slice;
@@ -75,8 +75,8 @@ public class KuduMetadata implements ConnectorMetadata {
     }
 
     @Override
-    public List<SchemaTableName> listTables(ConnectorSession session, String schemaNameOrNull) {
-        return clientSession.listTables(schemaNameOrNull);
+    public List<SchemaTableName> listTables(ConnectorSession session, Optional<String> schemaName) {
+        return clientSession.listTables(schemaName.orElse(null));
     }
 
     @Override
@@ -85,12 +85,12 @@ public class KuduMetadata implements ConnectorMetadata {
         requireNonNull(prefix, "SchemaTablePrefix is null");
 
         List<SchemaTableName> tables;
-        if (prefix.getSchemaName() == null) {
+        if (prefix.isEmpty()) {
             tables = listTables(session, Optional.empty());
-        } else if (prefix.getTableName() == null) {
-            tables = listTables(session, prefix.getSchemaName());
+        } else if (!prefix.getTable().isPresent()) {
+            tables = listTables(session, prefix.getSchema());
         } else {
-            tables = ImmutableList.of(new SchemaTableName(prefix.getSchemaName(), prefix.getTableName()));
+            tables = ImmutableList.of(new SchemaTableName(prefix.getSchema().orElse(null), prefix.getTable().orElse(null)));
         }
 
         ImmutableMap.Builder<SchemaTableName, List<ColumnMetadata>> columns = ImmutableMap.builder();
@@ -180,7 +180,7 @@ public class KuduMetadata implements ConnectorMetadata {
     @Override
     public List<ConnectorTableLayoutResult> getTableLayouts(ConnectorSession session,
                                                             ConnectorTableHandle tableHandle,
-                                                            Constraint<ColumnHandle> constraint,
+                                                            Constraint constraint,
                                                             Optional<Set<ColumnHandle>> desiredColumns) {
         KuduTableHandle handle = fromConnectorTableHandle(session, tableHandle);
         ConnectorTableLayout layout = new ConnectorTableLayout(

@@ -1,9 +1,9 @@
 package ml.littlebulb.presto.kudu;
 
-import com.facebook.presto.spi.Page;
-import com.facebook.presto.spi.RecordPageSource;
-import com.facebook.presto.spi.UpdatablePageSource;
-import com.facebook.presto.spi.block.Block;
+import io.prestosql.spi.Page;
+import io.prestosql.spi.connector.RecordPageSource;
+import io.prestosql.spi.connector.UpdatablePageSource;
+import io.prestosql.spi.block.Block;
 import io.airlift.slice.Slice;
 import org.apache.kudu.Schema;
 import org.apache.kudu.client.Delete;

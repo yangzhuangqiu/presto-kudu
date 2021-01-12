@@ -13,7 +13,7 @@
  */
 package ml.littlebulb.presto.kudu.properties;
 
-import com.facebook.presto.spi.session.PropertyMetadata;
+import io.prestosql.spi.session.PropertyMetadata;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
@@ -42,8 +42,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.facebook.presto.spi.session.PropertyMetadata.integerProperty;
-import static com.facebook.presto.spi.session.PropertyMetadata.stringProperty;
+import static io.prestosql.spi.session.PropertyMetadata.integerProperty;
+import static io.prestosql.spi.session.PropertyMetadata.stringProperty;
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static java.util.Objects.requireNonNull;
 
